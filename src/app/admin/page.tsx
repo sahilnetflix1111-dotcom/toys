@@ -293,7 +293,7 @@ export default function AdminPage() {
 
   const handleLogout = async () => {
     await logout();
-    window.location.href = '/portal_ad';
+    window.location.href = '/admin';
   };
 
   return (
