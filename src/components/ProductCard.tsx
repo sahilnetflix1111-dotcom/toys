@@ -142,14 +142,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
 
-        {/* Simulated Indian EMI option container */}
-        <div className="emi-container">
-          <span className="emi-text">or <strong>₹{emiPrice}/Month</strong></span>
-          <span className="emi-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
-            Buy on EMI ➔
-          </span>
-        </div>
-
         {/* Shipping details footer */}
         <div className="shipping-row">
           <span className="shipping-origin">Ships from 🇮🇳</span>
@@ -167,6 +159,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           overflow: hidden;
           transition: var(--transition-smooth);
           height: 100%;
+          min-width: 0;
         }
 
         .product-card:hover {
@@ -459,55 +452,23 @@ export default function ProductCard({ product }: ProductCardProps) {
         .product-price-row {
           display: flex;
           align-items: baseline;
-          gap: 8px;
+          gap: 6px;
           margin-top: auto;
+          flex-wrap: wrap;
         }
 
         .product-price {
           font-family: var(--font-sans);
-          font-size: 1.15rem;
+          font-size: 1.05rem;
           font-weight: 700;
           color: var(--text-primary);
         }
 
         .product-original-price {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           color: var(--text-muted);
           text-decoration: line-through;
           font-family: var(--font-sans);
-        }
-
-        /* EMI option box styles */
-        .emi-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          padding: 8px 10px;
-          margin-top: 12px;
-          background: rgba(255, 255, 255, 0.01);
-          font-size: 0.75rem;
-        }
-
-        .emi-text {
-          color: var(--text-secondary);
-        }
-
-        .emi-text strong {
-          color: var(--text-primary);
-        }
-
-        .emi-btn {
-          color: var(--accent);
-          font-weight: 700;
-          font-size: 0.7rem;
-          text-transform: uppercase;
-          cursor: pointer;
-        }
-
-        .emi-btn:hover {
-          text-decoration: underline;
         }
 
         /* Shipping Row */
@@ -515,11 +476,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-top: 10px;
-          font-size: 0.7rem;
+          font-size: 0.6rem;
           color: var(--text-muted);
           border-top: 1px solid var(--border-light);
           padding-top: 8px;
+          flex-wrap: wrap;
+          gap: 4px;
         }
 
         .shipping-origin {
