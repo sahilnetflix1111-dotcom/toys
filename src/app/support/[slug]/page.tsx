@@ -3,18 +3,7 @@ import React, { useMemo, use } from 'react';
 import Link from 'next/link';
 
 
-export function generateStaticParams() {
-  return [
-    { slug: 'delivery' },
-    { slug: 'returns' },
-    { slug: 'product-care' },
-    { slug: 'faq' },
-    { slug: 'contact' },
-    { slug: 'privacy' },
-    { slug: 'terms' },
-    { slug: 'disclaimer' }
-  ];
-}
+
 
 export default function SupportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
