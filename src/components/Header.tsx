@@ -208,12 +208,14 @@ export default function Header() {
         .cart-btn {
           position: relative;
           color: var(--text-secondary);
-          padding: 8px;
+          padding: 12px;
           border-radius: 50%;
           transition: var(--transition-fast);
           display: flex;
           align-items: center;
           justify-content: center;
+          min-width: 44px;
+          min-height: 44px;
         }
 
         .cart-btn:hover {
@@ -224,7 +226,7 @@ export default function Header() {
 
         .theme-toggle-btn {
           color: var(--text-secondary);
-          padding: 8px;
+          padding: 12px;
           border-radius: 50%;
           transition: var(--transition-fast);
           display: flex;
@@ -233,6 +235,8 @@ export default function Header() {
           background: transparent;
           border: none;
           cursor: pointer;
+          min-width: 44px;
+          min-height: 44px;
         }
 
         .theme-toggle-btn:hover {
@@ -261,11 +265,13 @@ export default function Header() {
 
         .mobile-menu-toggle {
           color: var(--text-primary);
-          padding: 8px;
+          padding: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
           transition: var(--transition-fast);
+          min-width: 44px;
+          min-height: 44px;
         }
 
         @media (min-width: 768px) {
@@ -282,7 +288,13 @@ export default function Header() {
           bottom: 0;
           background: var(--bg-mobile-menu, rgba(10, 5, 13, 0.98));
           z-index: 99;
-          animation: fadeIn 0.3s ease-out forwards;
+          animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          transform-origin: top;
+        }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: scaleY(0.95) translateY(-10px); }
+          to { opacity: 1; transform: scaleY(1) translateY(0); }
         }
 
         .mobile-nav {

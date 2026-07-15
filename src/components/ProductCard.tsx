@@ -178,12 +178,16 @@ export default function ProductCard({ product }: ProductCardProps) {
         .product-image-area {
           position: relative;
           background: #fce4ec; /* Soft lustful pink to cover white bg */
-          height: 240px;
+          height: 200px;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
           border-bottom: 1px solid var(--border-light);
+        }
+        
+        @media (min-width: 768px) {
+          .product-image-area { height: 240px; }
         }
 
         .product-photo-wrapper {
@@ -273,13 +277,19 @@ export default function ProductCard({ product }: ProductCardProps) {
         .card-badge-status {
           position: absolute;
           top: 12px;
-          right: 12px;
+          right: 50px; /* Moved slightly left to make room for quick add on mobile */
           z-index: 5;
           font-size: 0.65rem;
           font-weight: 700;
           padding: 4px 10px;
           border-radius: 4px;
           letter-spacing: 0.05em;
+        }
+        
+        @media (min-width: 768px) {
+          .card-badge-status {
+            right: 12px; /* Reset for desktop since quick add moves to bottom */
+          }
         }
 
         .badge-bestseller {
@@ -305,7 +315,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        /* Hover Pink View Product Overlay */
+        /* View Product / Add to Cart Overlay */
         .view-product-overlay {
           position: absolute;
           bottom: 0;
@@ -316,24 +326,30 @@ export default function ProductCard({ product }: ProductCardProps) {
           font-weight: 700;
           font-size: 0.85rem;
           text-align: center;
-          padding: 12px;
+          padding: 10px;
           letter-spacing: 0.08em;
-          transform: translateY(100%);
+          transform: translateY(0); /* Visible by default on mobile */
           transition: var(--transition-smooth);
           z-index: 8;
         }
 
-        .product-card:hover .view-product-overlay {
-          transform: translateY(0);
+        @media (min-width: 768px) {
+          .view-product-overlay {
+            transform: translateY(100%); /* Hidden by default on desktop */
+            padding: 12px;
+          }
+          .product-card:hover .view-product-overlay {
+            transform: translateY(0);
+          }
         }
 
         /* Quick Add Small Circular Button */
         .quick-add-icon-btn {
           position: absolute;
-          bottom: 12px;
+          top: 12px;
           right: 12px;
-          width: 36px;
-          height: 36px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: rgba(10, 5, 13, 0.8);
           color: #ffffff;
@@ -343,19 +359,28 @@ export default function ProductCard({ product }: ProductCardProps) {
           justify-content: center;
           z-index: 9;
           transition: var(--transition-smooth);
-          opacity: 0.7;
+          opacity: 1; /* Always visible on mobile */
         }
 
         .quick-add-icon-btn:hover {
           background: var(--accent);
           color: #ffffff;
           transform: scale(1.1);
-          opacity: 1;
         }
 
-        .product-card:hover .quick-add-icon-btn {
-          opacity: 0;
-          pointer-events: none; /* Hide under pink overlay */
+        @media (min-width: 768px) {
+          .quick-add-icon-btn {
+            bottom: 12px;
+            right: 12px;
+            top: auto;
+            width: 36px;
+            height: 36px;
+            opacity: 0.7;
+          }
+          .product-card:hover .quick-add-icon-btn {
+            opacity: 0;
+            pointer-events: none; /* Hide under pink overlay */
+          }
         }
 
         .product-info-area {
@@ -463,7 +488,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           margin-top: 12px;
           background: rgba(255, 255, 255, 0.01);
           font-size: 0.75rem;
-          padding-right: 40px; /* Prevent overlap with quick-add btn */
         }
 
         .emi-text {
@@ -496,7 +520,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           color: var(--text-muted);
           border-top: 1px solid var(--border-light);
           padding-top: 8px;
-          padding-right: 40px; /* Prevent overlap with quick-add btn */
         }
 
         .shipping-origin {

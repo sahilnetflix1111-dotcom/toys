@@ -81,7 +81,7 @@ export default async function HomePage() {
   // Select 4 attractive/lustful products for display (Top Featured)
   const featuredBestsellers = products
     .filter(p => p.isBestSeller || p.category === 'Lingerie & Clothing' || p.name.includes('Vibrating') || p.name.includes('Wand'))
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort((a, b) => b.id - a.id)
     .slice(0, 4);
 
   // Map category images
@@ -100,6 +100,18 @@ export default async function HomePage() {
       <Header />
 
       <main className="home-layout">
+        {/* Flash Sale Ticker */}
+        <div className="ticker-wrap">
+          <div className="ticker">
+            <span className="ticker-item">🔥 FLASH SALE — 20% OFF ALL TOYS</span>
+            <span className="ticker-item">🚀 FREE DISCREET SHIPPING OVER ₹999</span>
+            <span className="ticker-item">🆕 69 NEW PREMIUM ARRIVALS</span>
+            <span className="ticker-item">🔥 FLASH SALE — 20% OFF ALL TOYS</span>
+            <span className="ticker-item">🚀 FREE DISCREET SHIPPING OVER ₹999</span>
+            <span className="ticker-item">🆕 69 NEW PREMIUM ARRIVALS</span>
+          </div>
+        </div>
+
         {/* Quick Nav Circular Categories */}
         <section className="quick-nav-section">
           <div className="quick-nav-scroll">
