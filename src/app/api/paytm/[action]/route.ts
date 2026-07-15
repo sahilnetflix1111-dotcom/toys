@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PaytmChecksum } from '../../../../../utils/paytmChecksum';
+import { PaytmChecksum } from '../../../../utils/paytmChecksum';
 
 export async function POST(request: Request, context: any) {
   const { action } = await context.params;
