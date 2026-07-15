@@ -975,3 +975,139 @@ img {
   color: var(--text-primary);
   font-weight: 500;
 }
+
+/* ====== MISSING PAGE LAYOUT STYLES ====== */
+
+.home-categories-section,
+.home-bestsellers-section,
+.cta-banner-section,
+.newsletter-section {
+  padding: 60px 0;
+}
+
+@media (max-width: 768px) {
+  .home-categories-section,
+  .home-bestsellers-section,
+  .cta-banner-section,
+  .newsletter-section {
+    padding: 40px 0;
+  }
+}
+
+.section-title, .section-title-left {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.section-title {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .section-title, .section-title-left {
+    font-size: 1.5rem;
+  }
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.view-all-link {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* CTA Banner Section */
+.cta-banner-section {
+  background: var(--bg-tertiary);
+  text-align: center;
+}
+
+.cta-text-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-text-content h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+}
+
+.cta-text-content p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .cta-text-content h2 { font-size: 1.6rem; }
+  .cta-text-content p { font-size: 0.95rem; }
+}
+
+.discreet-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.discreet-badges span {
+  background: rgba(255, 42, 133, 0.1);
+  border: 1px solid rgba(255, 42, 133, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+.newsletter-container {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-container h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.newsletter-container p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .newsletter-container h2 { font-size: 1.5rem; }
+  .newsletter-container p { font-size: 0.95rem; }
+}
+
+.newsletter-disclaimer {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
