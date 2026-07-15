@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ['lavish-bucket-vastness.ngrok-free.dev'],
   images: {
+    unoptimized: true,
     qualities: [50, 75, 85, 100],
     remotePatterns: [
       {
