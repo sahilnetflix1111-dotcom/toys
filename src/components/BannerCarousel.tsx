@@ -109,12 +109,6 @@ export default function BannerCarousel() {
                 unoptimized={true}
                 className="carousel-image"
               />
-              <div className="banner-gradient"></div>
-              <div className="banner-content">
-                <h2>{banner.headline}</h2>
-                <p>{banner.subtext}</p>
-                <span className="banner-btn">{banner.cta}</span>
-              </div>
             </Link>
           </div>
         ))}
@@ -139,52 +133,6 @@ export default function BannerCarousel() {
       </div>
       
       <style jsx>{`
-        .banner-gradient {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(10,4,6,0.9) 0%, rgba(10,4,6,0.3) 50%, rgba(10,4,6,0.1) 100%);
-          z-index: 1;
-        }
-        .banner-content {
-          position: absolute;
-          bottom: 40px;
-          left: 20px;
-          right: 20px;
-          z-index: 2;
-          color: white;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .banner-content h2 {
-          font-size: 1.8rem;
-          font-weight: 700;
-          margin-bottom: 4px;
-          line-height: 1.1;
-        }
-        .banner-content p {
-          font-size: 0.95rem;
-          color: rgba(255,255,255,0.9);
-          margin-bottom: 12px;
-        }
-        .banner-btn {
-          display: inline-block;
-          background: var(--accent);
-          color: white;
-          padding: 8px 20px;
-          border-radius: 20px;
-          font-weight: 700;
-          font-size: 0.85rem;
-          text-transform: uppercase;
-          box-shadow: 0 4px 12px rgba(255, 42, 133, 0.4);
-        }
-        @media (min-width: 768px) {
-          .banner-content {
-            bottom: 60px;
-            left: 40px;
-          }
-          .banner-content h2 { font-size: 2.8rem; }
-          .banner-content p { font-size: 1.2rem; margin-bottom: 20px; }
-          .banner-btn { padding: 12px 28px; font-size: 1rem; }
-        }
       `}</style>
     </div>
   );

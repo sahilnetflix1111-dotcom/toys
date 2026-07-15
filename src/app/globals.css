@@ -364,30 +364,14 @@ p {
   overflow: hidden;
   background: var(--bg-secondary);
   border-radius: 0;
-  height: 310px;
-  min-height: 310px;
-}
-
-@media (min-width: 480px) {
-  .banner-carousel-container {
-    height: 250px;
-    min-height: 250px;
-  }
+  aspect-ratio: 1376 / 768;
+  height: auto;
 }
 
 @media (min-width: 768px) {
   .banner-carousel-container {
-    height: 350px;
-    min-height: 350px;
     border-radius: var(--border-radius-lg);
     margin: 24px auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .banner-carousel-container {
-    height: 450px;
-    min-height: 450px;
   }
 }
 
