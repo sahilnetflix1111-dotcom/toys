@@ -81,7 +81,7 @@ export default async function HomePage() {
   // Select 4 attractive/lustful products for display (Top Featured)
   const featuredBestsellers = products
     .filter(p => p.isBestSeller || p.category === 'Lingerie & Clothing' || p.name.includes('Vibrating') || p.name.includes('Wand'))
-    .sort((a, b) => b.price - a.price)
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, 4);
 
   // Map category images
