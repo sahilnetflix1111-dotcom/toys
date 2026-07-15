@@ -58,17 +58,34 @@ export default function BannerCarousel() {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Auto slide
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
     }, 5000);
-    return () => clearInterval(timer);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, []);
 
-  const goToSlide = (index: number) => setCurrentIndex(index);
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % banners.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+    resetTimer();
+  };
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % banners.length);
+    resetTimer();
+  };
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
+    resetTimer();
+  };
 
   // Touch handlers
   const minSwipeDistance = 50;
@@ -106,7 +123,7 @@ export default function BannerCarousel() {
                 alt={banner.alt} 
                 fill
                 priority={index === 0}
-                unoptimized={true}
+                sizes="100vw"
                 className="carousel-image"
               />
             </Link>
@@ -132,8 +149,7 @@ export default function BannerCarousel() {
         ))}
       </div>
       
-      <style jsx>{`
-      `}</style>
+
     </div>
   );
 }

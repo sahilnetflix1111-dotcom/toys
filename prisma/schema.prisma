@@ -13,7 +13,7 @@ model Product {
   name            String
   price           Float
   description     String
-  images          String      // Stored as JSON string
+  images          String      @db.Text // Stored as JSON string
   category        String
   subcategory     String?
   features        String      // Stored as JSON string

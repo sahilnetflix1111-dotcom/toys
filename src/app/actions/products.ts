@@ -57,6 +57,19 @@ export async function getProductById(id: number) {
   }
 }
 
+export async function getRelatedProducts(category: string, excludeId: number, limit: number = 4) {
+  try {
+    const [rows] = await pool.query(
+      'SELECT * FROM Product WHERE category = ? AND id != ? ORDER BY isBestSeller DESC, id DESC LIMIT ?',
+      [category, excludeId, limit]
+    );
+    return (rows as any[]).map(mapDbProduct);
+  } catch (error) {
+    console.error("MySQL Fetch Error:", error);
+    return [];
+  }
+}
+
 export async function createProduct(data: Omit<Product, 'id'>) {
   const [result] = await pool.query(
     `INSERT INTO Product (name, price, description, images, category, subcategory, features, isNew, isBestSeller, isOnSale, discountPercent, rating, reviews, color, silhouetteType, updatedAt)

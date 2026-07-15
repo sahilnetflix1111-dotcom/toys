@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ProductCard from '../../components/ProductCard';
 import { categoryTree, Product } from '../../data/products';
@@ -65,17 +65,26 @@ export default function CatalogClient({ products }: { products: Product[] }) {
     updateUrl(category, subcategory, searchQuery);
   };
 
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setSearchQuery(val);
-    updateUrl(selectedCategory, selectedSubcategory, val);
+    
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+    
+    searchTimeoutRef.current = setTimeout(() => {
+      updateUrl(selectedCategory, selectedSubcategory, val);
+    }, 400);
   };
 
   const handleResetFilters = () => {
     setSelectedCategory('All');
     setSearchQuery('');
     setSortOption('popular');
-    setPriceRange(15000);
+    setPriceRange(100000);
     setShowSaleOnly(false);
     router.push('/catalog');
   };

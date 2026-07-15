@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import ProductDetailClient from './ProductDetailClient';
-import { getProducts, getProductById } from '../../actions/products';
+import { getProductById, getRelatedProducts } from '../../actions/products';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 1800;
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -21,10 +21,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     return <NotFoundView />;
   }
 
-  const products = await getProducts();
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 4);
+  const relatedProducts = await getRelatedProducts(product.category, product.id, 4);
 
   return (
     <>

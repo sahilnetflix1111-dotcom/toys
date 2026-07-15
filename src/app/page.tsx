@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 import { getProducts } from './actions/products';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 1800;
 
 const customerReviews = [
   {
@@ -84,6 +84,11 @@ export default async function HomePage() {
     .sort((a, b) => b.id - a.id)
     .slice(0, 4);
 
+  // New Arrivals
+  const newArrivals = [...products]
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 8);
+
   // Map category images
   const categoryImages: Record<string, string> = {
     'Women Sex Toys': '/categories/circ_cat_vibrator_1783348478935.jpg',
@@ -132,7 +137,7 @@ export default async function HomePage() {
                       alt={cat.displayName}
                       fill
                       sizes="110px"
-                      unoptimized={true}
+                      className="category-image"
                     />
                   </div>
                   <span className="quick-category-label">{cat.displayName}</span>
@@ -165,9 +170,8 @@ export default async function HomePage() {
                       src={subcat.image}
                       alt={subcat.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="cat-bg-image"
-                      unoptimized={true}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="cat-content">
                       <h3>{subcat.name}</h3>
@@ -190,6 +194,25 @@ export default async function HomePage() {
             
             <div className="bestsellers-grid">
               {featuredBestsellers.map((product) => (
+                <div key={product.id} className="grid-item-fade">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* New Arrivals Section */}
+        <section className="featured-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">New Arrivals</h2>
+              <Link href="/catalog?sort=new" className="view-all-link">
+                View All →
+              </Link>
+            </div>
+            <div className="bestsellers-grid">
+              {newArrivals.map((product) => (
                 <div key={product.id} className="grid-item-fade">
                   <ProductCard product={product} />
                 </div>
