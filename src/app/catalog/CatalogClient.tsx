@@ -106,16 +106,29 @@ export default function CatalogClient({ products }: { products: Product[] }) {
         return matchesCategory && matchesSubcategory && matchesSearch && matchesPrice && matchesSale;
       })
       .sort((a, b) => {
+        // Dolls Priority
+        if (sortOption === 'popular' || sortOption === 'newest') {
+          const aIsDoll = a.subcategory === 'Sex Dolls' ? 1 : 0;
+          const bIsDoll = b.subcategory === 'Sex Dolls' ? 1 : 0;
+          if (aIsDoll !== bIsDoll) return bIsDoll - aIsDoll;
+        }
+
         // Sorting Logic
+        if (sortOption === 'newest') return b.id - a.id;
         if (sortOption === 'price-low') return a.price - b.price;
         if (sortOption === 'price-high') return b.price - a.price;
         if (sortOption === 'rating') return (b.rating || 0) - (a.rating || 0);
+        
         // default: lustiest (highest rating first, then by most reviews, then bestsellers)
-        if (b.rating !== a.rating) return (b.rating || 0) - (a.rating || 0);
-        if (b.reviews !== a.reviews) return (b.reviews || 0) - (a.reviews || 0);
         const aScore = (a.isBestSeller ? 2 : 0) + (a.isNew ? 1 : 0);
         const bScore = (b.isBestSeller ? 2 : 0) + (b.isNew ? 1 : 0);
-        return bScore - aScore;
+        if (bScore !== aScore) return bScore - aScore;
+        
+        if (b.rating !== a.rating) return (b.rating || 0) - (a.rating || 0);
+        if (b.reviews !== a.reviews) return (b.reviews || 0) - (a.reviews || 0);
+        
+        // Fallback: newly added items on top
+        return b.id - a.id;
       });
   }, [products, selectedCategory, selectedSubcategory, searchQuery, sortOption, priceRange, showSaleOnly]);
 
@@ -259,6 +272,7 @@ export default function CatalogClient({ products }: { products: Product[] }) {
                 onChange={(e) => setSortOption(e.target.value)}
               >
                 <option value="popular">Bestsellers & Popular</option>
+                <option value="newest">New Arrivals</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
                 <option value="rating">Top Rated</option>
