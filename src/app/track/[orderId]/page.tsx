@@ -5,8 +5,9 @@ import { getOrderByDisplayId } from '../../actions/orders';
 
 export const dynamic = 'force-dynamic';
 
-export default async function TrackOrderPage({ params }: { params: { orderId: string } }) {
-  const orderId = params.orderId;
+export default async function TrackOrderPage({ params }: { params: Promise<{ orderId: string }> }) {
+  const resolvedParams = await params;
+  const orderId = resolvedParams.orderId;
   const order = await getOrderByDisplayId(orderId);
 
   if (!order) {

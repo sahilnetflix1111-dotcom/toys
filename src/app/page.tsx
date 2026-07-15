@@ -106,7 +106,7 @@ export default async function HomePage() {
             {[
               { id: 'men', dbName: 'Men Sex Toys', displayName: 'MEN SEX TOYS' },
               { id: 'women', dbName: 'Women Sex Toys', displayName: 'WOMEN SEX TOYS' },
-              { id: 'couples', dbName: 'Couples Toys', displayName: 'COUPLE & LGBTQ TOYS' },
+              { id: 'couples', dbName: 'Couples Toys', displayName: 'COUPLES & LGBTQ' },
               { id: 'bdsm', dbName: 'BDSM & Bondage', displayName: 'BONDAGE & BDSM' },
               { id: 'lingerie', dbName: 'Lingerie & Clothing', displayName: 'SEXY LINGERIE & CLOTHING' },
               { id: 'supplements', dbName: 'Supplements & Condoms', displayName: 'SUPPLEMENTS AND CONDOMS' }

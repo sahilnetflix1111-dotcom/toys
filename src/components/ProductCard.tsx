@@ -65,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Link href={`/product/${product.id}`} className="product-card">
       <div className="product-image-area">
         {/* Top-left negative discount pill */}
-        {product.isOnSale && (
+        {Boolean(product.isOnSale) && (
           <span className="card-badge-discount">-{product.discountPercent}%</span>
         )}
         
@@ -95,9 +95,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Floating Quick Add Icon Button */}
-        <button 
+        <div 
+          role="button"
+          tabIndex={0}
           className="quick-add-icon-btn" 
           onClick={handleQuickAdd}
+          onKeyDown={(e) => { if (e.key === 'Enter') handleQuickAdd(e as any); }}
           aria-label={`Add ${product.name} to Cart`}
           title="Quick Add to Cart"
         >
@@ -105,7 +108,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-        </button>
+        </div>
       </div>
 
       {/* Product Card Thumbnails */}
@@ -129,7 +132,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Pricing Layout: original on left (crossed out), sale price on right (larger, bold) */}
         <div className="product-price-row">
-          {product.isOnSale && (
+          {Boolean(product.isOnSale) && (
             <span className="product-original-price">
               ₹{originalPrice.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
             </span>
@@ -460,6 +463,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           margin-top: 12px;
           background: rgba(255, 255, 255, 0.01);
           font-size: 0.75rem;
+          padding-right: 40px; /* Prevent overlap with quick-add btn */
         }
 
         .emi-text {
@@ -492,6 +496,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           color: var(--text-muted);
           border-top: 1px solid var(--border-light);
           padding-top: 8px;
+          padding-right: 40px; /* Prevent overlap with quick-add btn */
         }
 
         .shipping-origin {

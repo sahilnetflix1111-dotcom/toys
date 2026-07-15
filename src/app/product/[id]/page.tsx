@@ -7,8 +7,9 @@ import { getProducts, getProductById } from '../../actions/products';
 
 export const dynamic = 'force-dynamic';
 
-export default async function ProductDetailPage({ params }: { params: { id: string } }) {
-  const productId = parseInt(params.id, 10);
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const productId = parseInt(resolvedParams.id, 10);
   
   if (isNaN(productId)) {
     return <NotFoundView />;
